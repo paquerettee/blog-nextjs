@@ -1,18 +1,21 @@
-// app/post/[id]/page.tsx
+"use client";
 
-export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+import { useParams } from "next/navigation";
+import { usePosts } from "./../../context/PostsContext";
 
-  const post = {
-    title: `Post #${id}`,
-    content: `This is the full content of post #${id}. It’s dynamically rendered!`,
-  };
+export default function PostPage() {
+  const { id } = useParams();
+  const posts = usePosts();
+  console.log(posts);
+
+  const post = posts.find((p) => p.id.toString() === id);
+
+  if (!post) return <p>Post not found!</p>;
 
   return (
     <main className="max-w-3xl mx-auto p-6 space-y-6">
       <h1 className="text-3xl font-bold">{post.title}</h1>
-      <p className="text-gray-700">{post.content}</p>
-      <p className="text-sm text-gray-400">Post ID: {id}</p>
+      <p className="text-gray-700">{post.body}</p>
     </main>
   );
 }
