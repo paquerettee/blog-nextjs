@@ -1,4 +1,5 @@
 import "./globals.css";
+import ThemeWrapper from "./components/ThemeWrapper";
 import PostsProvider from "./components/PostsProvider";
 
 export default async function RootLayout({
@@ -6,15 +7,22 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const posts = await fetch("https://jsonplaceholder.typicode.com/posts")
-    .then((res) => res.json())
-    .then((data) => data.slice(0, 10));
-  // console.log(posts);
+  let posts = [];
+
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await res.json();
+    posts = data.slice(0, 10);
+  } catch (error) {
+    console.error("Error while fetching posts: ", error);
+  }
 
   return (
     <html lang="en">
       <body>
-        <PostsProvider posts={posts}>{children}</PostsProvider>
+        <ThemeWrapper>
+          <PostsProvider posts={posts}>{children}</PostsProvider>
+        </ThemeWrapper>
       </body>
     </html>
   );
