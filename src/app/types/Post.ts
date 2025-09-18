@@ -3,3 +3,8 @@ export type Post = {
   title: string;
   body: string;
 };
+
+export interface PostsContextType {
+  posts: Post[];
+  addPost: (title: string, body: string) => void;
+}

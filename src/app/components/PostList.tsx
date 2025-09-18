@@ -1,11 +1,10 @@
 import PostItem from "./PostItem";
-import { Post } from "../types/Post";
+import { usePosts } from "../context/PostsContext";
 
-type PostListProps = {
-  posts: Post[];
-};
+export default function PostList() {
+  const { posts } = usePosts();
+  if (posts.length === 0) return <p>No posts yet.</p>;
 
-export default function PostList({ posts }: PostListProps) {
   return (
     <div className="flex flex-col">
       {posts.map((post) => (

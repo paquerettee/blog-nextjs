@@ -1,11 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
+import { Post } from "../types/Post";
 
-type PostItemProps = {
-  id: number;
-  title: string;
-  body: string;
-};
+type PostItemProps = Post;
 
 export default function PostItem({ id, title, body }: PostItemProps) {
   const [isExpanded, setIsExpanded] = useState(false);

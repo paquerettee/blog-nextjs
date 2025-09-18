@@ -1,21 +1,14 @@
 import "./globals.css";
 import ThemeWrapper from "./components/ThemeWrapper";
 import PostsProvider from "./components/PostsProvider";
+import { Post } from "./types/Post";
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let posts = [];
-
-  try {
-    const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const data = await res.json();
-    posts = data.slice(0, 10);
-  } catch (error) {
-    console.error("Error while fetching posts: ", error);
-  }
+  const posts: Post[] = [];
 
   return (
     <html lang="en">
