@@ -1,7 +1,7 @@
 "use client";
+import Link from "next/link";
 
 import { usePosts } from "../context/PostsContext";
-import NewPost from "../components/NewPost";
 
 export default function Sidebar() {
   const { posts } = usePosts();
@@ -18,7 +18,11 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
-      <NewPost />
+      <Link href="/new-post">
+        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          Add New Post
+        </button>
+      </Link>
     </>
   );
 }
