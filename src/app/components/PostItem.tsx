@@ -17,13 +17,14 @@ export default function PostItem({ id, title, body }: PostItemProps) {
       </h2>
       {isExpanded ? (
         <>
-          <p className="mt-2">{body}</p>
+          <p className="mt-2">{body.slice(0, 500)}</p>
+          {/* {console.log("Post item: ", id)} */}
           <Link href={`/post/${id}`}>
             <button className="mt-2 text-blue-600 underline">Read more...</button>
           </Link>
         </>
       ) : (
-        <p className="mt-2">{body.slice(0, 100)}...</p>
+        <p className="mt-2">{body.slice(0, 220)}...</p>
       )}
     </div>
   );

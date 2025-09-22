@@ -17,25 +17,28 @@ export default function NewPost() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        required
-        className="border p-2"
-      />
-      <textarea
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-        placeholder="Content"
-        required
-        className="border p-2"
-      />
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-        Add Post
-      </button>
-    </form>
+    <>
+      <h3>Add new post</h3>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Title"
+          required
+          className="border p-2"
+        />
+        <textarea
+          value={body}
+          onChange={(e) => setBody(e.target.value)}
+          placeholder="Content"
+          required
+          className="border p-2"
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
+          Add Post
+        </button>
+      </form>
+    </>
   );
 }

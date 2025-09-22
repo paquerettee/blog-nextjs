@@ -5,7 +5,7 @@ import { usePosts } from "./../../context/PostsContext";
 
 export default function PostPage() {
   const { id } = useParams();
-  const posts = usePosts();
+  const { posts } = usePosts();
   console.log(posts);
 
   const post = posts.find((p) => p.id.toString() === id);

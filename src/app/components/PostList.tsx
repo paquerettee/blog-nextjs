@@ -1,3 +1,5 @@
+"use client";
+
 import PostItem from "./PostItem";
 import { usePosts } from "../context/PostsContext";
 
@@ -7,9 +9,10 @@ export default function PostList() {
 
   return (
     <div className="flex flex-col">
-      {posts.map((post) => (
-        <PostItem key={post.id} id={post.id} title={post.title} body={post.body} />
-      ))}
+      {posts.map((post) => {
+        // console.log(post.id);
+        return <PostItem key={post.id} id={post.id} title={post.title} body={post.body} />;
+      })}
     </div>
   );
 }
