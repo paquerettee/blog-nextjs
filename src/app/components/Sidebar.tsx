@@ -9,7 +9,7 @@ export default function Sidebar() {
   const recentPosts = posts.slice(0, 5);
 
   return (
-    <aside className="flex flex-col gap-4 bg-gray-900 text-white p-6 rounded-lg shadow-md">
+    <aside className="flex flex-col gap-4 bg-[#001133] text-white p-6 rounded-lg shadow-md">
       <h3 className="text-xl font-semibold border-b border-white/20 pb-2">Recent Posts</h3>
       <ul className="space-y-2">
         {recentPosts.map((post) => (

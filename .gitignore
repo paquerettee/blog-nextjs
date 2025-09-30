@@ -46,3 +46,4 @@ src/app/components/ThemeChanger.tsx
 src/app/components/ThemeProvider.tsx
 src/app/context/ThemeContext.tsx
 src/app/types/Theme.ts
+blog-nextjs.code-workspace

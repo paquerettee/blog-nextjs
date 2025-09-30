@@ -16,6 +16,7 @@ const config = {
           100: "#d6d6d6",
           50: "#f0f0f0",
         },
+        bluedeep: { 100: "#0a0e1a" },
       },
     },
   },

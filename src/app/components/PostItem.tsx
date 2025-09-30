@@ -8,7 +8,7 @@ export default function PostItem({ id, title, body }: PostItemProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="border p-4 rounded mb-4 hover:shadow transition bg-white text-black dark:bg-neutral-900 dark:text-blue-200">
+    <div className="border p-4 max-w-6xl rounded mb-4 hover:shadow transition bg-white text-black dark:bg-neutral-900 dark:text-blue-200">
       <h2
         className="text-xl font-semibold cursor-pointer hover:text-blue-400"
         onClick={() => setIsExpanded((prev) => !prev)}
