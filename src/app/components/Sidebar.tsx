@@ -9,20 +9,26 @@ export default function Sidebar() {
   const recentPosts = posts.slice(0, 5);
 
   return (
-    <>
-      <h3>Recent Posts</h3>
-      <ul>
+    <aside className="flex flex-col gap-4 bg-gray-900 text-white p-6 rounded-lg shadow-md">
+      <h3 className="text-xl font-semibold border-b border-white/20 pb-2">Recent Posts</h3>
+      <ul className="space-y-2">
         {recentPosts.map((post) => (
           <li key={post.id}>
-            <a href={`/post/${post.id}`}>{post.title}</a>
+            <Link
+              href={`/post/${post.id}`}
+              className="text-gray-100 hover:text-blue-300 transition-colors duration-200"
+            >
+              {post.title}
+            </Link>
           </li>
         ))}
       </ul>
-      <Link href="/new-post">
-        <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-          Add New Post
-        </button>
+      <Link
+        href="/new-post"
+        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-200"
+      >
+        Add New Post
       </Link>
-    </>
+    </aside>
   );
 }

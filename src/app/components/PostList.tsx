@@ -8,7 +8,7 @@ export default function PostList() {
   if (posts.length === 0) return <p>No posts yet.</p>;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-gray-100 text-black dark:bg-neutral-800 dark:text-white p-4 rounded shadow">
       {posts.map((post) => {
         // console.log(post.id);
         return <PostItem key={post.id} id={post.id} title={post.title} body={post.body} />;

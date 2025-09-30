@@ -1,5 +1,4 @@
 import "./globals.css";
-import ThemeWrapper from "./components/ThemeWrapper";
 import Navbar from "./components/Navbar";
 import PostsProvider from "./components/PostsProvider";
 import { Post } from "./types/Post";
@@ -13,14 +12,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      {/* <body className="bg-white text-black dark:bg-black dark:text-white"> */}
+      <body className="bg-white text-black dark:bg-red-900 dark:text-yellow-300">
         <header>
           <Navbar />
         </header>
-        <main>
-          <ThemeWrapper>
-            <PostsProvider posts={posts}>{children}</PostsProvider>
-          </ThemeWrapper>
+        <main className="dark:bg-neutral-900">
+          <PostsProvider posts={posts}>{children}</PostsProvider>
         </main>
       </body>
     </html>
