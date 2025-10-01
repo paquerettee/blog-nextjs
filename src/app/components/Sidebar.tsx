@@ -25,7 +25,7 @@ export default function Sidebar() {
       </ul>
       <Link
         href="/new-post"
-        className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-200"
+        className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition-colors duration-200 mx-auto"
       >
         Add New Post
       </Link>

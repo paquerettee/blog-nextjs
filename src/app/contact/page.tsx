@@ -1,7 +1,7 @@
 export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md border border-blue-100 p-8">
-      <h1 className="text-4xl font-bold text-blue-400 mb-10 text-center">Contact Us</h1>
+      <h1 className="text-4xl font-bold text-blue-400 mb-8 text-center">Contact Us</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Left Column: Contact Info */}
