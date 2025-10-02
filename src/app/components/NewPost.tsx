@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { usePosts } from "../context/PostsContext";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 export default function NewPost() {
@@ -15,8 +14,7 @@ export default function NewPost() {
     e.preventDefault();
     if (!title || !body) return;
     const postId = addPost(title, body);
-    router.push(`/post/${postId}`);
-    toast.success("Post published!");
+    router.push(`/post/${postId}?success=true`);
   };
 
   return (
