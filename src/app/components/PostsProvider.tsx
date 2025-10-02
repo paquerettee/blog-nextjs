@@ -36,6 +36,7 @@ export default function PostsProvider({ children, posts: initialPosts }: Props) 
     console.log("addPost");
     const newPost: Post = { id: Date.now(), title, body };
     setPosts((prev) => [...prev, newPost]);
+    return newPost.id;
   };
 
   const value: PostsContextType = { posts, addPost };

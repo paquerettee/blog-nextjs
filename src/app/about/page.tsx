@@ -1,7 +1,9 @@
+import Heading from "../components/Heading";
+
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md border border-blue-100 p-8 space-y-6">
-      <h1 className="text-4xl font-bold text-blue-400 text-center mb-8">About This Blog</h1>
+    <div className="space-y-6">
+      <Heading level={2}>About this blog</Heading>
 
       <p className="text-gray-700">
         Welcome to my blog! This is a simple project built with React, Next.js, and TypeScript. Here

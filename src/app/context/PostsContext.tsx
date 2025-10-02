@@ -5,12 +5,14 @@ import { Post } from "../types/Post";
 
 export interface PostsContextType {
   posts: Post[];
-  addPost: (title: string, body: string) => void;
+  addPost: (title: string, body: string) => string | number;
 }
 
 export const PostsContext = createContext<PostsContextType>({
   posts: [],
-  addPost: () => {},
+  addPost: () => {
+    return "";
+  },
 });
 
 export const usePosts = () => useContext(PostsContext);

@@ -1,7 +1,9 @@
+import Heading from "../components/Heading";
+
 export default function ContactPage() {
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md border border-blue-100 p-8">
-      <h1 className="text-4xl font-bold text-blue-400 mb-8 text-center">Contact Us</h1>
+    <>
+      <Heading level={2}>Contact Us</Heading>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Left Column: Contact Info */}
@@ -50,7 +52,7 @@ export default function ContactPage() {
           <div>
             <h2 className="text-lg font-semibold text-blue-400 mb-1">Message</h2>
             <textarea
-              rows="4"
+              rows={4}
               className="w-full border border-blue-200 rounded px-3 py-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
               placeholder="Type your message here..."
             ></textarea>
@@ -64,6 +66,6 @@ export default function ContactPage() {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 }
