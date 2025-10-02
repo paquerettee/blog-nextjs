@@ -10,10 +10,10 @@ export default function NewPost() {
   const [body, setBody] = useState("");
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title || !body) return;
-    const postId = addPost(title, body);
+    const postId = await addPost(title, body);
     router.push(`/post/${postId}?success=true`);
   };
 

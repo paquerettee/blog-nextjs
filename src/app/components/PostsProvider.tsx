@@ -22,19 +22,20 @@ export default function PostsProvider({ children, posts: initialPosts }: Props) 
   //   }
   // }, [initialPosts]);
   useEffect(() => {
-    fetch("/posts.json")
+    console.log("provider: fetching posts");
+    fetch("/api/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
 
-  // Save posts to localStorage whenever they change
-  useEffect(() => {
-    localStorage.setItem("posts", JSON.stringify(posts));
-  }, [posts]);
+  const addPost = async (title: string, body: string) => {
+    const res = await fetch("/api/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title, body }),
+    });
 
-  const addPost = (title: string, body: string) => {
-    console.log("addPost");
-    const newPost: Post = { id: Date.now(), title, body };
+    const newPost: Post = await res.json();
     setPosts((prev) => [...prev, newPost]);
     return newPost.id;
   };
