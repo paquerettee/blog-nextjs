@@ -42,7 +42,18 @@ export default function PostsProvider({ children, posts: initialPosts }: Props) 
     return savedPost.id;
   };
 
-  const value: PostsContextType = { posts, addPost, updatePost };
+  const deletePost = async (id: number) => {
+    const res = await fetch("/api/posts", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
+    const deletedPost = await res.json();
+    setPosts((prev) => prev.filter((post) => post.id !== deletedPost.id));
+    return deletedPost.id;
+  };
+
+  const value: PostsContextType = { posts, addPost, updatePost, deletePost };
 
   return <PostsContext.Provider value={value}>{children}</PostsContext.Provider>;
 }

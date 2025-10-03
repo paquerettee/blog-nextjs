@@ -5,7 +5,7 @@ import { usePosts } from "../context/PostsContext";
 
 export default function Sidebar() {
   const { posts } = usePosts();
-  if (posts.length === 0) return <p>No posts yet.</p>;
+  // if (posts.length === 0) return <p>No posts yet.</p>;
   const recentPosts = posts.slice(0, 5);
 
   return (
