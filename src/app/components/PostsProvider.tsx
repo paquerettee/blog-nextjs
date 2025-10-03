@@ -12,15 +12,6 @@ type Props = {
 export default function PostsProvider({ children, posts: initialPosts }: Props) {
   const [posts, setPosts] = useState<Post[]>(initialPosts);
 
-  // Merge localStorage posts with server initial posts
-  // useEffect(() => {
-  //   const stored = localStorage.getItem("posts");
-  //   if (stored) {
-  //     const localPosts: Post[] = stored ? JSON.parse(stored) : [];
-  //     // Only add local posts that are not already in initialPosts
-  //     setPosts([...localPosts, ...initialPosts]);
-  //   }
-  // }, [initialPosts]);
   useEffect(() => {
     console.log("provider: fetching posts");
     fetch("/api/posts")
@@ -35,12 +26,23 @@ export default function PostsProvider({ children, posts: initialPosts }: Props) 
       body: JSON.stringify({ title, body }),
     });
 
-    const newPost: Post = await res.json();
-    setPosts((prev) => [...prev, newPost]);
-    return newPost.id;
+    const savedPost: Post = await res.json();
+    setPosts((prev) => [...prev, savedPost]);
+    return savedPost.id;
   };
 
-  const value: PostsContextType = { posts, addPost };
+  const updatePost = async (id: number, title: string, body: string) => {
+    const res = await fetch("/api/posts", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, title, body }),
+    });
+    const savedPost: Post = await res.json();
+    setPosts((prev) => prev.map((post) => (post.id === savedPost.id ? savedPost : post)));
+    return savedPost.id;
+  };
+
+  const value: PostsContextType = { posts, addPost, updatePost };
 
   return <PostsContext.Provider value={value}>{children}</PostsContext.Provider>;
 }

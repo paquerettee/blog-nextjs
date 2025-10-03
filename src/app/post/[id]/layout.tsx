@@ -11,7 +11,7 @@ export default function PostPageLayout({ children }: { children: React.ReactNode
   useEffect(() => {
     const success = searchParams.get("success");
     if (success === "true" && !hasShownToast.current) {
-      toast.success("Post added!");
+      toast.success("Post saved!");
       hasShownToast.current = true;
     }
   }, [searchParams]);

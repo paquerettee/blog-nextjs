@@ -1,19 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePosts } from "../context/PostsContext";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 
-export default function NewPost() {
-  const { addPost } = usePosts();
+export default function EditPost() {
+  const { id } = useParams();
+  const { posts } = usePosts();
+  const { addPost, updatePost } = usePosts();
+  const router = useRouter();
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const router = useRouter();
+
+  useEffect(() => {
+    const postId = Number(id);
+    if (postId) {
+      const post = posts.find((p) => p.id === postId);
+      if (post) {
+        setTitle(post.title);
+        setBody(post.body);
+      }
+    }
+  }, [id, posts]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    let postId = Number(id);
     if (!title || !body) return;
-    const postId = await addPost(title, body);
+    if (postId) await updatePost(postId, title, body);
+    else postId = await addPost(title, body);
     router.push(`/post/${postId}?success=true`);
   };
 
@@ -49,7 +65,7 @@ export default function NewPost() {
             type="submit"
             className="block mx-auto bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500 transition-colors"
           >
-            Add Post
+            Save Post
           </button>
         </form>
       </div>

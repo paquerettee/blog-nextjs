@@ -25,3 +25,13 @@ export function savePost(post: Omit<Post, "id">): Post {
   fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
   return newPost;
 }
+
+export function updatePost(post: Post): Post | null {
+  const posts = getPosts();
+  const index = posts.findIndex((p) => p.id === post.id);
+  if (index === -1) return null;
+
+  posts[index] = post;
+  fs.writeFileSync(filePath, JSON.stringify(posts, null, 2));
+  return post;
+}

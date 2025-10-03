@@ -6,6 +6,7 @@ import { Post } from "../types/Post";
 export interface PostsContextType {
   posts: Post[];
   addPost: (title: string, body: string) => Promise<number>;
+  updatePost: (id: number, title: string, body: string) => void;
 }
 
 export const PostsContext = createContext<PostsContextType>({
@@ -13,6 +14,7 @@ export const PostsContext = createContext<PostsContextType>({
   addPost: async () => {
     return 0;
   },
+  updatePost: async () => {},
 });
 
 export const usePosts = () => useContext(PostsContext);
