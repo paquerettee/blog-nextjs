@@ -12,9 +12,18 @@ export default function PostPage() {
   const { id } = useParams();
   const { posts, deletePost } = usePosts();
   const [showDialog, setShowDialog] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const router = useRouter();
 
   const post = posts.find((p) => p.id.toString() === id);
+
+  if (isDeleting) {
+    return (
+      <main className="max-w-3xl mx-auto p-6 text-center text-gray-500">
+        <p className="animate-pulse">Deleting post…</p>
+      </main>
+    );
+  }
 
   if (!post) return <p>Post not found!</p>;
 
@@ -23,15 +32,13 @@ export default function PostPage() {
   };
 
   const confirmDelete = async () => {
-    console.log("confirm delete: ", post.id);
     setShowDialog(false);
+    setIsDeleting(true);
     if (post.id) {
       const postId = await deletePost(post.id);
       if (postId) {
-        // console.log("post deleted id: ", postId);
-        // router.push("/");
-        router.push("/post-deleted");
         toast.success("Post deleted!");
+        router.push(`/`);
       }
     }
   };
