@@ -18,7 +18,7 @@ export default function HomeClient() {
         <div className="flex-1">
           <PostList />
         </div>
-        <div className="flex-shrink-0 max-w-64 w-full">
+        <div className="hidden md:block flex-shrink-0 max-w-64 w-full">
           <Sidebar />
         </div>
       </section>

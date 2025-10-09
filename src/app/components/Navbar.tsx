@@ -3,6 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 
+function MobileNavItem({ children, href = "", className = "" }) {
+  const baseClass = "hover:text-blue-400 uppercase transition";
+  const combinedClass = `${baseClass} ${className}`;
+  return <li className={combinedClass}>{href ? <Link href={href}>{children}</Link> : children}</li>;
+}
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,21 +25,12 @@ export default function Navbar() {
           isOpen ? "flex flex-col items-end" : "hidden"
         } md:flex md:flex-row md:items-center md:justify-around`}
       >
-        <li>
-          <Link href="/" className="hover:text-blue-400 uppercase transition">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link href="/about" className="hover:text-blue-400 uppercase transition">
-            About
-          </Link>
-        </li>
-        <li>
-          <Link href="/contact" className="hover:text-blue-400 uppercase transition">
-            Contact
-          </Link>
-        </li>
+        <MobileNavItem href="/"> Home</MobileNavItem>
+        <MobileNavItem href="/about">About</MobileNavItem>
+        <MobileNavItem href="/contact">Contact</MobileNavItem>
+        <MobileNavItem className="md:hidden" href="/new-post">
+          Add new post
+        </MobileNavItem>
       </ul>
     </nav>
   );
