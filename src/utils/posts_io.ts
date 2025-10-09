@@ -34,7 +34,6 @@ export function updatePost(post: Post): Post | null {
   return post;
 }
 
-// export function deletePost(id :number): Post | null {
 export function deletePost({ id }: { id: number }): Post | null {
   const posts = getPosts();
   const index = posts.findIndex((p) => p.id === id);

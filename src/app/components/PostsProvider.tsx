@@ -13,7 +13,6 @@ export default function PostsProvider({ children, posts: initialPosts }: Props) 
   const [posts, setPosts] = useState<Post[]>(initialPosts);
 
   useEffect(() => {
-    console.log("provider: fetching posts");
     fetch("/api/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
