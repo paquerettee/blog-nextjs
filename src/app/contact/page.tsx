@@ -5,9 +5,9 @@ export default function ContactPage() {
     <>
       <Heading level={2}>Contact Us</Heading>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+      <div className="flex flex-col md:flex-row gap-16 justify-center md:justify-start">
         {/* Left Column: Contact Info */}
-        <div className="space-y-6 text-right">
+        <div className="flex-1 max-w-[300px] space-y-6 text-center md:text-right">
           <div>
             <h2 className="text-lg font-semibold text-blue-400 mb-1">Address</h2>
             <p className="text-gray-700">
@@ -30,7 +30,7 @@ export default function ContactPage() {
         </div>
 
         {/* Right Column: Email Form */}
-        <form className="space-y-6 w-full md:w-2/3">
+        <form className="flex-1 max-w-[350px] space-y-6 w-full md:w-2/3">
           <div>
             <h2 className="text-lg font-semibold text-blue-400 mb-1">Your Name</h2>
             <input
@@ -60,7 +60,7 @@ export default function ContactPage() {
 
           <button
             type="submit"
-            className="bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500 transition-colors"
+            className="block mx-auto md:mx-0 md:ml-auto bg-blue-400 text-white px-4 py-2 rounded hover:bg-blue-500 transition-colors"
           >
             Send Message
           </button>
