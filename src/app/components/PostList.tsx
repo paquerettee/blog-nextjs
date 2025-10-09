@@ -9,58 +9,62 @@ const POSTS_PER_PAGE = 5;
 export default function PostList() {
   const { posts } = usePosts();
   const [currentPage, setCurrentPage] = useState(1);
-  const [visiblePostsCount, setVisiblePostsCount] = useState(POSTS_PER_PAGE);
+  const [endMobile, setEndMobile] = useState(POSTS_PER_PAGE);
 
   if (posts.length === 0) return <p>No posts yet.</p>;
 
-  const totalPages = Math.ceil(posts.length / visiblePostsCount);
-  const firstPostIdx = (currentPage - 1) * visiblePostsCount;
-  const lastPostIdx = firstPostIdx + visiblePostsCount;
-  const currentPosts = posts.slice(firstPostIdx, lastPostIdx);
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  const startDesktop = (currentPage - 1) * POSTS_PER_PAGE;
+  const endDesktop = startDesktop + POSTS_PER_PAGE;
+  const desktopPosts = posts.slice(startDesktop, endDesktop);
 
-  function loadMorePosts() {
-    setCurrentPage(1);
-    setVisiblePostsCount(
-      visiblePostsCount + POSTS_PER_PAGE > posts.length
-        ? posts.length
-        : visiblePostsCount + POSTS_PER_PAGE
+  const mobilePosts = posts.slice(0, endMobile);
+
+  function loadPostsMobile() {
+    setEndMobile(
+      endMobile + POSTS_PER_PAGE > posts.length ? posts.length : endMobile + POSTS_PER_PAGE
     );
   }
 
-  function loadNextPosts(page: number) {
+  function loadPostsDesktop(page: number) {
     setCurrentPage(page);
-    setVisiblePostsCount(POSTS_PER_PAGE);
   }
 
   return (
     <div className="flex flex-col gap-4 text-black dark:bg-neutral-800 dark:text-white ">
-      {currentPosts.map((post) => {
-        return <PostItem key={post.id} id={post.id} title={post.title} body={post.body} />;
-      })}
+      {/* mobile view */}
+      <div className="block md:hidden">
+        {mobilePosts.map((post) => {
+          return <PostItem key={post.id} id={post.id} title={post.title} body={post.body} />;
+        })}
+        <button
+          className="flex justify-center mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+          onClick={loadPostsMobile}
+        >
+          Load more posts
+        </button>
+      </div>
 
-      {/* load more button for mobiles */}
-      <button
-        className="block md:hidden mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-        onClick={loadMorePosts}
-      >
-        Load more posts
-      </button>
-
-      {/* pagination buttons for desktop */}
-      <div className="hidden md:flex justify-center gap-2 mt-6">
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => {
-              loadNextPosts(page);
-            }}
-            className={`px-3 py-1 rounded border ${
-              page === currentPage ? "bg-blue-500 text-white" : "bg-white text-blue-500 "
-            }`}
-          >
-            {page}
-          </button>
-        ))}
+      {/* desktop view */}
+      <div className="hidden md:block">
+        {desktopPosts.map((post) => {
+          return <PostItem key={post.id} id={post.id} title={post.title} body={post.body} />;
+        })}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <button
+              key={page}
+              onClick={() => {
+                loadPostsDesktop(page);
+              }}
+              className={`px-3 py-1 rounded border ${
+                page === currentPage ? "bg-blue-500 text-white" : "bg-white text-blue-500 "
+              }`}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
