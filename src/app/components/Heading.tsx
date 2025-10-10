@@ -14,7 +14,7 @@ const fsize = {
 };
 
 export default function Heading({ children, level = 1, additionalClass = "" }: HeadingProps) {
-  const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+  const Tag: React.ElementType = `h${level}`;
   const styles = `${fsize[level]} font-bold text-blue-400 text-center mb-8`;
   return <Tag className={`${styles} ${additionalClass}`}>{children}</Tag>;
 }
