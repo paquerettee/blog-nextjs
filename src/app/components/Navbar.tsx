@@ -3,7 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 
-function MobileNavItem({ children, href = "", className = "" }) {
+type MobileNavItemProps = {
+  children: React.ReactNode;
+  href?: string;
+  className?: string;
+};
+
+function MobileNavItem({ children, href = "", className = "" }: MobileNavItemProps) {
   const baseClass = "hover:text-blue-400 uppercase transition";
   const combinedClass = `${baseClass} ${className}`;
   return <li className={combinedClass}>{href ? <Link href={href}>{children}</Link> : children}</li>;
